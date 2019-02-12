@@ -1,6 +1,7 @@
 from __future__ import print_function
 import plyvel
 from ansible.plugins.cache import BaseCacheModule
+import json
 
 DOCUMENTATION = '''
     cache: leveldb
@@ -10,15 +11,17 @@ DOCUMENTATION = '''
 class CacheModule(BaseCacheModule):
 
     def __init__(self, *args, **kwargs):
+        print ('args {}'.format(args))
+        print ('kwargs {}'.format(kwargs))
         self._cache = plyvel.DB('/tmp/testdb/', create_if_missing=True)
 
     def get(self, key):
         print ('get {}'.format(key))
-        return self._cache.get(key.encode()).decode()
+        return json.loads(self._cache.get(key.encode()).decode())
 
     def set(self, key, value):
         print ('set {}'.format(key))
-        return self._cache.put(key.encode(), value.encode())
+        return self._cache.put(key.encode(), json.dumps(value).encode())
 
     def keys(self):
         print ('keys')
@@ -26,7 +29,7 @@ class CacheModule(BaseCacheModule):
 
     def contains(self, key):
         print ('contains {}'.format(key.encode()))
-        return self._cache.get(key) is not None
+        return self._cache.get(key.encode()) is not None
 
     def delete(self, key):
         print ('delete {}'.format(key.encode()))

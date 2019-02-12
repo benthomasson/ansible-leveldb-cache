@@ -1,0 +1,11 @@
+- name: test leveldb cache
+  hosts: localhost
+  gather_facts: True
+  tasks:
+    - setup:
+    - set_fact:
+        message: hello leveldb
+    - debug:
+        var: message
+
+
