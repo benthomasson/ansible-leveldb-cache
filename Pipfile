@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 plyvel = "*"
+ansible = "*"
 
 [dev-packages]
 
