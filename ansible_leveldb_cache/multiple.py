@@ -2,6 +2,7 @@ from __future__ import print_function
 from ansible.plugins.cache import BaseCacheModule
 import json
 import os
+import gc
 
 DOCUMENTATION = '''
     cache: leveldb
@@ -11,6 +12,7 @@ DOCUMENTATION = '''
 class CacheModule(BaseCacheModule):
 
     def __init__(self, *args, **kwargs):
+        print('multiple')
         print('args {}'.format(args))
         print('kwargs {}'.format(kwargs))
         self._cache = '/tmp/test_multiple'
@@ -26,6 +28,9 @@ class CacheModule(BaseCacheModule):
         print('set {}'.format(key))
         with open(os.path.join(self._cache, key), 'w') as f:
             f.write(json.dumps(value))
+        value = None
+        key = None
+        gc.collect()
 
     def keys(self):
         print('keys')

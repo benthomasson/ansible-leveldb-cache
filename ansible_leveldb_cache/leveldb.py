@@ -11,6 +11,7 @@ DOCUMENTATION = '''
 class CacheModule(BaseCacheModule):
 
     def __init__(self, *args, **kwargs):
+        print('leveldb')
         print ('args {}'.format(args))
         print ('kwargs {}'.format(kwargs))
         self._cache = plyvel.DB('/tmp/testdb/', create_if_missing=True)
