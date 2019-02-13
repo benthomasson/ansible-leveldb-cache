@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 plyvel = "*"
 ansible = "*"
+pyyaml = "*"
 
 [dev-packages]
 pytest = "*"

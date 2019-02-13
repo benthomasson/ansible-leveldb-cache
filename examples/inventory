@@ -1,1 +1,3 @@
-localhost ansible_connection=local
+localhost1 ansible_ssh_host=127.0.0.1
+localhost2 ansible_ssh_host=127.0.0.1
+localhost3 ansible_ssh_host=127.0.0.1
