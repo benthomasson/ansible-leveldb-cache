@@ -5,8 +5,9 @@ name = "pypi"
 
 [packages]
 plyvel = "*"
-ansible = "*"
-pyyaml = "*"
+ansible = ">=2.7.12"
+pyyaml = ">=4.2b1"
+jinja2 = ">=2.10.1"
 
 [dev-packages]
 pytest = "*"
